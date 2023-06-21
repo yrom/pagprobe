@@ -1,0 +1,25 @@
+cmake_minimum_required(VERSION 3.20)
+project(pagprobe)
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_EXTENSIONS OFF)
+set(TARGET pagprobe)
+set(PAG_DIR ${CMAKE_CURRENT_SOURCE_DIR}/thirdparty/libpag)
+if(CMAKE_HOST_APPLE)
+    if(NOT EXISTS "${PAG_DIR}/vendor_tools/vendor.cmake")
+        execute_process(COMMAND bash sync_deps.sh
+            WORKING_DIRECTORY "${PAG_DIR}"
+        )
+    endif()
+endif(CMAKE_HOST_APPLE)
+set(PAG_BUILD_SHARED OFF)
+set(PAG_BUILD_TESTS OFF)
+add_subdirectory(cmake/Ccache)
+add_subdirectory(thirdparty/libpag)
+add_subdirectory(thirdparty/fifo_map)
+add_subdirectory(thirdparty/libpag/third_party/json)
+
+file(GLOB SOURCES "*.cc")
+
+add_executable(${TARGET} ${SOURCES})
+target_include_directories(${TARGET} PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
+target_link_libraries(${TARGET} fifo_map nlohmann_json pag)

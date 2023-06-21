@@ -1,0 +1,9 @@
+[submodule "thirdparty/libpag"]
+	path = thirdparty/libpag
+	url = https://github.com/Tencent/libpag.git
+[submodule "cmake/Ccache"]
+	path = cmake/Ccache
+	url = https://github.com/TheLartians/Ccache.cmake
+[submodule "thirdparty/fifo_map"]
+	path = thirdparty/fifo_map
+	url = https://github.com/nlohmann/fifo_map.git
