@@ -1,6 +1,6 @@
 # pagprobe
 
-Dump the infomation in json of pag file by [libpag](https://github.com/Tencent/libpag) .
+In-depth viewing of `.pag` file information in json format via [libpag](https://github.com/Tencent/libpag) .
 
 ## Building
 
